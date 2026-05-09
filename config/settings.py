@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from django.conf.global_settings import STATICFILES_DIRS
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-oph4w%-e0gxo!ocr*)25*^%af=%&a2)n2n!-lwf+2lo(t*^$p+'
@@ -87,3 +89,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [BASE_DIR / 'static',]
