@@ -54,8 +54,9 @@
                             <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя" required>
                         </div>
                         <div class="mb-3">
-                            <label for="phone">Телефон</label>
-                            <input type="tel" name="phone" class="form-control" id="phone" placeholder="Контактный телефон" required>
+                            <label for="phone">Enter your phone number:<br />
+                                <small>Format: +7 123 456 7890</small></label>
+                            <input type="tel" name="phone" class="form-control" id="phone" pattern="[+]{1}[0-9]{1} [0-9]{3} [0-9]{3} [0-9]{4}" placeholder="Контактный телефон" required>
                         </div>
                         <div class="mb-3">
                             <label for="message">Сообщение</label>
