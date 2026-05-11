@@ -1,0 +1,65 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Бакалея",
+        "description": "Крупы и макаронные изделия"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Бакалея",
+        "description": "Крупы и макаронные изделия"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+        "name": "Кондитерка",
+        "description": "Кондитерские изделия"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Гречка",
+        "description": "Крупа гречневая Алтайская",
+        "image_product": "",
+        "category": 2,
+        "price": 100.0,
+        "created_at": "2026-05-10T11:49:18.338Z",
+        "updated_at": "2026-05-10T11:49:18.339Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Спагетти",
+        "description": "Макароны твердых сортов",
+        "image_product": "",
+        "category": 2,
+        "price": 80.0,
+        "created_at": "2026-05-10T11:50:24.096Z",
+        "updated_at": "2026-05-10T11:50:24.096Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Торт",
+        "description": "Торт Сникерс",
+        "image_product": "",
+        "category": 3,
+        "price": 1500.0,
+        "created_at": "2026-05-10T12:00:56.778Z",
+        "updated_at": "2026-05-10T12:04:13.150Z"
+    }
+}
+]
