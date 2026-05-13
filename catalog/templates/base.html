@@ -1,6 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
+<html lang="en" data-bs-theme="auto">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -190,31 +191,10 @@
       </ul>
     </div>
 
-    {% include 'header.html' %}
+  {% include 'header.html' %}
 
-    <main>
-      <section class="py-1 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Список товаров</h1>
-<!--            <p class="lead text-body-secondary">-->
-<!--              Something short and leading about the collection below—its-->
-<!--              contents, the creator, etc. Make it short and sweet, but not too-->
-<!--              short so folks don’t simply skip over it entirely.-->
-<!--            </p>-->
-          </div>
-        </div>
-      </section>
-      <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+  {% block content %} {% endblock %}
 
-            {% block content %} {% endblock %}
-
-          </div>
-        </div>
-      </div>
-    </main>
     <footer class="text-body-secondary py-5">
       <div class="container">
         <p class="float-end mb-1"><a href="#">Back to top</a></p>
