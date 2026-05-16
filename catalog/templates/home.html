@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
-
+{% load my_tags %}
 {% block content %}
 <main>
   <section class="py-1 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Список товаров</h1>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="{% url 'catalog:new_product' %}" role="button">Добавить товар</a>
+        </div>
       </div>
     </div>
   </section>
@@ -15,32 +18,22 @@
       {% for product in products %}
           <div class="col">
             <div class="card shadow-sm">
-              <svg
-                aria-label="Placeholder: Thumbnail"
+              <img aria-label="Placeholder: Thumbnail"
                 class="bd-placeholder-img card-img-top"
                 height="225"
                 preserveAspectRatio="xMidYMid slice"
                 role="img"
                 width="100%"
-                xmlns="http://www.w3.org/2000/svg"
+                src="{{ product.image_product | media_filter }}"
               >
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c"></rect>
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                  Thumbnail
-                </text>
-              </svg>
               <div class="card-body">
                 <p class="card-text">
                   {{ product.name }}
                 </p>
-                <div
-                  class="d-flex justify-content-between align-items-center"
-                >
+                <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a class="btn btn-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button">О товаре</a>
                   </div>
-                  <small class="text-body-secondary">9 mins</small>
                 </div>
               </div>
             </div>
