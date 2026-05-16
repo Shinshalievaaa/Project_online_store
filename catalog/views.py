@@ -19,8 +19,7 @@ def new_product(request):
     if request.method == 'POST':
         name = request.POST['name']
         description = request.POST['description']
-        category_fk = request.POST['category_id']  # Assuming 'category' is the name for the select input
-        print(f'category_fk = {category_fk}')
+        category_fk = request.POST['category_id']
         category = Category.objects.get(id=category_fk)
         image_file = request.FILES.get('image_product')
         price = request.POST['price']
