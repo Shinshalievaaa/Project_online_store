@@ -1,3 +1,4 @@
+from encodings.base64_codec import base64_decode
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -97,6 +98,6 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'static',]
 
-MEDIA_URL = '/photo/'
-MEDIA_ROOT = BASE_DIR / 'photo'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
