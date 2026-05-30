@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+  <section class="py-1 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h2>Удалить блог</h2>
+        <p>Вы уверены, что хотите удалить блог "{{ blog.name }}"?</p>
+      </div>
+    </div>
+  </section>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+            <div class="card-body">
+                <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Удалить</button>
+                        <div class="btn-group">
+                          <a class="btn btn-primary" href="{% url 'blog:blog_list' %}" role="button">Отмена</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
