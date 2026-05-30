@@ -15,28 +15,7 @@
             <div class="card-body">
                 <form method="post" action="" class="form-floating" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <select name="category_id" class="form-select mb-3" aria-label="Default select example">
-                      <option value="" selected>Выберите категорию</option>
-                      {% for category in categories %}
-                        <option value="{{ category.id }}">{{ category.name }}</option>
-                      {% endfor %}
-                    </select>
-                    <div class="mb-3">
-                        <label for="name">Наименование</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Наименование товара" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description">Описание</label>
-                        <textarea type="text" name="description" class="form-control" id="description" placeholder="Описание товара" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price">Цена<br />
-                        <input type="number" name="price" class="form-control" id="price" placeholder="Цена, руб" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="image_product" class="form-label">Загрузить изображение</label>
-                        <input class="form-control" type="file" id="image_product" name="image_product">
-                    </div>
+                    {{ form.as_p }}
                     <div class="d-flex justify-content-between align-items-center">
                         <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Сохранить</button>
                         <div class="btn-group">
