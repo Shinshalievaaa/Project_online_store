@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from catalog.forms import ProductForm
 from catalog.models import Product
 from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 
@@ -44,3 +44,9 @@ class ContactsTemplateView(TemplateView):
         message = request.POST['message']
         print(name, phone, message)
         return HttpResponse('Данные успешно отправлены')
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'product_delete.html'
+    success_url = reverse_lazy('catalog:home')
