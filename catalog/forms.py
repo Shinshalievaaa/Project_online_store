@@ -66,7 +66,7 @@ class ProductForm(forms.ModelForm):
         name = cleaned_data.get("name")
         description = cleaned_data.get("description")
         forbidden_words = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
-        if name.lower() in forbidden_words:
-            self.add_error('name', 'Нельзя использовать запрещенное слова в наименование')
-        elif description.lower() in forbidden_words:
-            self.add_error('description', 'Нельзя использовать запрещенное слова в описание')
+        if any(word in name.lower() for word in forbidden_words):
+            self.add_error('name', 'Нельзя использовать запрещенные слова в наименование')
+        if any(word in description.lower() for word in forbidden_words):
+            self.add_error('description', 'Нельзя использовать запрещенные слова в описание')
