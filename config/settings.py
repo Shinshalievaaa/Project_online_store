@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog',
     'blog',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -111,3 +112,4 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'email@gmail.com' # Почта отправителя
 EMAIL_HOST_PASSWORD = 'password'
 
+AUTH_USER_MODEL = 'users.CustomUser'
