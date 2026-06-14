@@ -4,7 +4,7 @@
   <section class="py-1 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h3 class="fw-light">Заполните данные по новому товару</h3>
+        <h3 class="fw-light">Заполните данные по товару</h3>
       </div>
     </div>
   </section>
@@ -23,6 +23,9 @@
                         </div>
                     </div>
                 </form>
+                {% if object.image_product %}
+                    <img src="{{ object.image_product.url }}" alt="{{ object.name }}">
+                {% endif %}
                 {% if product_added %}
                     <section class="py-1 text-center container">
                         <div class="row py-lg-5">
