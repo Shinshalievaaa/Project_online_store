@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+            <div class="card-body">
+                <form method="post" action="" class="form-floating" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Зарегистрироваться</button>
+                        <div class="btn-group">
+                          <a class="btn btn-primary" href="{% url 'catalog:home' %}" role="button">Назад</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

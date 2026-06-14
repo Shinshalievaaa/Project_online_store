@@ -6,6 +6,11 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Список товаров</h1>
+        {% if user.is_authenticated %}
+            <p>Добро пожаловать, {{ user.email }}!</p>
+        {% else %}
+            <p>Добро пожаловать на сайт магазина!</p>
+        {% endif %}
         <div class="btn-group">
           <a class="btn btn-primary" href="{% url 'catalog:new_product' %}" role="button">Добавить товар</a>
         </div>
