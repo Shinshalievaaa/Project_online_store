@@ -4,11 +4,9 @@
 
 {% block content %}
   <h2>Регистрация</h2>
-<!--  <form method="post">-->
+  <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <a href="{% url 'users:register' %}">Зарегистрироваться</a>
-<!--    <button type="submit">Зарегистрироваться</button>-->
-<!--  </form>-->
-
+    <button type="submit">Зарегистрироваться</button>
+  </form>
 {% endblock %}
