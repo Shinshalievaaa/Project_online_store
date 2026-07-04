@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 
 from catalog.forms import ProductForm, ModeratorProductForm
@@ -27,6 +28,13 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     template_name = 'product_form.html'
     success_url = reverse_lazy('catalog:home')
 
+    def form_valid(self, form):
+        product = form.save()
+        user = self.request.user
+        product.owner = user
+        product.save()
+        return super().form_valid(form)
+
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
@@ -38,8 +46,9 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         user = self.request.user
         if user.has_perm('catalog.can_unpublish_product'):
             return ModeratorProductForm
-        else:
+        if user == self.object.owner:
             return ProductForm
+        raise PermissionDenied
 
 
 class ContactsTemplateView(TemplateView):
@@ -53,8 +62,8 @@ class ContactsTemplateView(TemplateView):
         return HttpResponse('Данные успешно отправлены')
 
 
-class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    permission_required = 'catalog.delete_product'
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    # permission_required = 'catalog.delete_product'
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('catalog:home')

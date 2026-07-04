@@ -1,3 +1,4 @@
+from users.models import CustomUser
 from django.db import models
 
 class Category(models.Model):
@@ -23,6 +24,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='дата последнего изменения')
     publish = models.BooleanField(default=False, verbose_name='Опубликовать')
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE,  verbose_name='Владелец', default=1)
 
     def __str__(self):
         return self.name
