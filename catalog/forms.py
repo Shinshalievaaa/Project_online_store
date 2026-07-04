@@ -7,6 +7,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'description', 'image_product', 'category', 'price']
+        exclude = ['publish','created', 'updated']
 
 
     def __init__(self, *args, **kwargs):
@@ -70,3 +71,9 @@ class ProductForm(forms.ModelForm):
             self.add_error('name', 'Нельзя использовать запрещенные слова в наименование')
         if any(word in description.lower() for word in forbidden_words):
             self.add_error('description', 'Нельзя использовать запрещенные слова в описание')
+
+
+class ModeratorProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['publish']

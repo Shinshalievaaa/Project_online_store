@@ -1,7 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse
 
-from catalog.forms import ProductForm
+from catalog.forms import ProductForm, ModeratorProductForm
 from catalog.models import Product
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -17,7 +17,6 @@ class HomeListView(ListView):
 class ProductDetailView(DetailView):
     model = Product
     fields = ['name', 'description', 'image_product', 'category', 'price']
-    # form_class = ProductForm
     context_object_name = 'product'
     template_name = 'product_detail.html'
 
@@ -35,6 +34,13 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'product_form.html'
     success_url = reverse_lazy('catalog:home')
 
+    def get_form_class(self):
+        user = self.request.user
+        if user.has_perm('catalog.can_unpublish_product'):
+            return ModeratorProductForm
+        else:
+            return ProductForm
+
 
 class ContactsTemplateView(TemplateView):
     template_name = 'contacts.html'
@@ -47,7 +53,8 @@ class ContactsTemplateView(TemplateView):
         return HttpResponse('Данные успешно отправлены')
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    permission_required = 'catalog.delete_product'
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('catalog:home')
