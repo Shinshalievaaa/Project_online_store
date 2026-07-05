@@ -118,7 +118,7 @@ LOGIN_REDIRECT_URL = 'catalog:home'
 LOGOUT_REDIRECT_URL = 'catalog:home'
 LOGIN_URL = 'users:login'
 
-CACHE_ENABLED = True
+CACHE_ENABLED = True if os.getenv('CACHE_ENABLED')=='True' else False
 
 if CACHE_ENABLED:
     CACHES = {

@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 from catalog.forms import ProductForm, ModeratorProductForm
 from catalog.models import Product
@@ -15,6 +17,7 @@ class HomeListView(ListView):
     template_name = 'home.html'
 
 
+@method_decorator(cache_page(60*15), name = 'dispatch')
 class ProductDetailView(DetailView):
     model = Product
     fields = ['name', 'description', 'image_product', 'category', 'price']
