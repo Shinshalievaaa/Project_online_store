@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
@@ -9,6 +10,8 @@ from catalog.models import Product
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+
+from catalog.services import ProductService
 
 
 class HomeListView(ListView):
@@ -70,3 +73,14 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     template_name = 'product_delete.html'
     success_url = reverse_lazy('catalog:home')
+
+
+class ProductInCategoryListView(ListView):
+    model = Product
+    template_name = 'list_products_in_category.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('category_id')
+        queryset = ProductService.list_products_in_category(category_id)
+        return queryset

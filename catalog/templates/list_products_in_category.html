@@ -5,7 +5,7 @@
   <section class="py-1 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Список товаров</h1>
+        <h1 class="fw-light">Список товаров в категории {{ product.category }}</h1>
         {% if user.is_authenticated %}
             <p>Добро пожаловать, {{ user.email }}!</p>
         {% else %}
@@ -37,21 +37,8 @@
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a class="btn btn-primary" href="{% url 'catalog:product_detail' product.pk %}" role="button">О товаре</a>
+                    <a class="btn btn-primary" href="{% url 'catalog:home' %}" role="button">Назад</a>
                   </div>
-                  <div class="btn-group">
-                    <a class="btn btn-primary" href="{% url 'catalog:list_products_in_category' product.category_id %}" role="button">Все товары {{ product.category }}</a>
-                  </div>
-                  {% if perms.catalog.delete_product or user == product.owner %}
-                  <div class="btn-group">
-                    <a class="btn btn-primary" href="{% url 'catalog:update_product' product.pk %}" role="button">Изменить</a>
-                  </div>
-                  {% endif %}
-                  {% if perms.catalog.delete_product or user == product.owner %}
-                  <div class="btn-group">
-                    <a class="btn btn-primary" href="{% url 'catalog:delete_product' product.pk %}" role="button">Удалить</a>
-                  </div>
-                  {% endif %}
                 </div>
               </div>
             </div>
